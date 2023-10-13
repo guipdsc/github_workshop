@@ -17,6 +17,7 @@ GITHUB_HEADERS = {
 if __name__ == "__main__":
     pr_number = os.getenv("GITHUB_REF").split("/")[-2]
     print("pr number: ", pr_number)
+    print(os.getenv('GITHUB_TOKEN'))
     print(GITHUB_HEADERS)
     requests.delete(
         f"https://api.github.com/repos/guipdsc/github_workshop/issues/{pr_number}/labels",
