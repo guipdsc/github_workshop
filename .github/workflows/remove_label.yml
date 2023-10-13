@@ -35,4 +35,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python3 ${{ env.GITHUB_PATH }}/remove_labels.py
+        run: python3 remove_labels.py
