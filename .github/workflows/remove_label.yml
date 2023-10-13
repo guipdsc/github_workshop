@@ -34,7 +34,7 @@ jobs:
           pip3 install requests
 
       - name: Install dependencies
-        run: export GITHUB_TOKEN={{ secrets.GITHUB_TOKEN }}
+        run: export GITHUB_TOKEN='{{ secrets.GITHUB_TOKEN }}'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
