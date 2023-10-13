@@ -22,9 +22,12 @@ jobs:
     steps:
       - name: Create issue using REST API
         run: |
-          curl --request DELETE \
-          --url 'https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels' \
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
-          --header 'accept: application/vnd.github.+json' \
-          --header 'X-GitHub-Api-Version: 2022-11-28'
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail
