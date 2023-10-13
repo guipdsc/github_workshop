@@ -15,9 +15,10 @@ GITHUB_HEADERS = {
 
 # main driver function
 if __name__ == "__main__":
-    print("ref: ", os.getenv("GITHUB_REF"))
-    # requests.delete(
-    #     f"https://api.github.com/repos/guipdsc/github_workshop/issues/{request.json['number']}/labels/{request.json['label']['name']}",
-    #     headers=GITHUB_HEADERS["DELETE"],
-    # )
-    # print("Deleted label")
+    pr_number = os.getenv("GITHUB_REF").split("/")[-2]
+    print("pr number: ", pr_number)
+    requests.delete(
+        f"https://api.github.com/repos/guipdsc/github_workshop/issues/{pr_number}/labels",
+        headers=GITHUB_HEADERS["DELETE"],
+    )
+    print("Deleted label")
